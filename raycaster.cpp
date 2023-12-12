@@ -1,5 +1,5 @@
 /**
- * @file maze.cpp
+ * @file raycaster.cpp
  * @brief Maze implementation.
  */
 
@@ -92,14 +92,14 @@ Uint32 buffer[SCREEN_HEIGHT][SCREEN_WIDTH]; /* H ==> W*/
 /* 1D Zbuffer*/
 double ZBuffer[SCREEN_WIDTH];
 
-/* Arrays for sorting sprites*/
+/* Arrays for sorting the sprites*/
 int spriteOrder[NUM_SPRITES];
 double spriteDistance[NUM_SPRITES];
 
-/* Functions for sorting the sprites */
+/* Func for sorting the sprites */
 void sortSprites(int* order, double *dist, int amount);
 
-int main(int ac, char **av, char **env)
+int main(int ar, char **arv, char **env)
 {
   double posX = 22.0, posY = 11.5;    // x and y start position
   double dirX = -1.0, dirY = 0.0;     // initial direction vector
@@ -109,8 +109,8 @@ int main(int ac, char **av, char **env)
   double oldTime = 0; // time of previous frame
 
   std::vector<Uint32> texture[11];
-  for (int i = 0; i < 11; i++)
-    texture[i].resize(texWidth * texHeight);
+  for (int a = 0; a < 11; a++)
+    texture[a].resize(texWidth * texHeight);
 
   screen(SCREEN_WIDTH, SCREEN_HEIGHT, 0, "The Maze 1");
 
@@ -183,12 +183,12 @@ int main(int ac, char **av, char **env)
       // Horizontal distance from the camera to the floor for the current row.
       double rowDistance = posZ / p;
 
-      // calculate the real world step vector we have to add for each x (parallel to camera plane)
-      // adding step by step avoids multiplications with a weight in the inner loop
+      // to calculate the real world step vector we have to add for each x (parallel to camera plane)
+      // adding step by step avoids multipl with a weight in the inner loop
       double floorStepX = rowDistance * (dirY) / SCREEN_WIDTH;
       double floorStepY = rowDistance * (-dirX) / SCREEN_WIDTH;
 
-      // real world coordinates of the leftmost column. This will be updated as we step to the right.
+      // real world coordinates of the leftmost column. This will be updated as we step to the right in the maze gazme
       double floorX = posX + rowDistance * dirX;
       double floorY = posY + rowDistance * dirY;
 
@@ -232,7 +232,7 @@ int main(int ac, char **av, char **env)
       int mapX = int(posX);
       int mapY = int(posY);
 
-      // Length of ray from current position to next x or y-side
+      // Length of ray from current pos to next x or y-side
       double sideDistX;
       double sideDistY;
 
@@ -241,7 +241,7 @@ int main(int ac, char **av, char **env)
       double deltaDistY = (rayDirY == 0) ? 1e30 : std::abs(1 / rayDirY);
       double perpWallDist;
 
-      // What direction to step in x or y-direction (either +1 or -1)
+      // What dir to step in x or y-direction (either +1 or -1)
       int stepX;
       int stepY;
 
@@ -351,19 +351,19 @@ int main(int ac, char **av, char **env)
      * Sprite Casting
      * Sort sprites from far to close
     */
-    for (int i = 0; i < NUM_SPRITES; i++)
+    for (int a = 0; a < NUM_SPRITES; a++)
     {
-      spriteOrder[i] = i;
-      spriteDistance[i] = ((posX - sprite[i].x) * (posX - sprite[i].x) + (posY - sprite[i].y) * (posY - sprite[i].y)); // sqrt not taken, unneeded
+      spriteOrder[a] = a;
+      spriteDistance[a] = ((posX - sprite[a].x) * (posX - sprite[a].x) + (posY - sprite[a].y) * (posY - sprite[a].y)); // sqrt not taken, unneeded
     }
     sortSprites(spriteOrder, spriteDistance, NUM_SPRITES);
 
     /* After sorting the sprites, do the projection and draw them */
-    for (int i = 0; i < NUM_SPRITES; i++)
+    for (int a = 0; a < NUM_SPRITES; a++)
     {
       // translate sprite position to relative to camera
-      double spriteX = sprite[spriteOrder[i]].x - posX;
-      double spriteY = sprite[spriteOrder[i]].y - posY;
+      double spriteX = sprite[spriteOrder[a]].x - posX;
+      double spriteY = sprite[spriteOrder[a]].y - posY;
 
       // transform sprite with the inverse camera matrix
       // [ planeX   dirX ] -1                                       [ dirY      -dirX ]
@@ -483,17 +483,17 @@ int main(int ac, char **av, char **env)
 void sortSprites(int *order, double *dist, int amount)
 {
   std::vector<std::pair<double, int>> sprites(amount);
-  for (int i = 0; i < amount; i++)
+  for (int a = 0; a < amount; a++)
   {
-    sprites[i].first = dist[i];
-    sprites[i].second = order[i];
+    sprites[a].first = dist[a];
+    sprites[a].second = order[a];
   }
   std::sort(sprites.begin(), sprites.end());
 
   /* Restore in reverse to go from futhest to nearest */
-  for (int i = 0; i < amount; i++)
+  for (int a = 0; a < amount; a++)
   {
-    order[i] = sprites[amount - i - 1 ].second;
-    dist[i] = sprites[amount - i - 1 ].first;
+    order[a] = sprites[amount - a - 1 ].second;
+    dist[a] = sprites[amount - a - 1 ].first;
   }
 }

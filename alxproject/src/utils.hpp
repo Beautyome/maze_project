@@ -1,12 +1,10 @@
 /**
- * @file common.hpp
- * @brief Common definitions for the maze project.
- * @author Jashon Osala
- * @version 1.0
+ * @file utils.hpp
+ * @brief Common def for the maze poryfolio project
  */
 
-#ifndef __THE_MAZE_COMMON_H__
-#define __THE_MAZE_COMMON_H__
+#ifndef __MAZE_UTILS_H__
+#define __MAZE_UTILS_H__
 
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -20,7 +18,7 @@
 namespace maze
 {
   /**
-   * Quick templates to get everything up and running.
+   * Quick temp to get everything up and running.
    */
 
   template <typename T>
@@ -149,4 +147,4 @@ namespace maze
 
 } // namespace maze
 
-#endif // __THE_MAZE_COMMON_H__
+#endif // __MAZE_UTILS_H__

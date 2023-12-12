@@ -1,13 +1,13 @@
 /**
- * The maze project is a simple maze game that uses raycasting to render the
+ * The maze project is a maze game that uses raycasting to render the
  * walls.
- * This project is built on top of SDL2 and uses C++17.
+ * This project is built on SDL2 and uses C++
  *
- * GitHub: https://github.com/Beautyome/maze-project
+ * GitHub: https://github.com/Beautyome/maze_project
  */
 
-#ifndef __THEMAZE_HPP__
-#define __THEMAZE_HPP__
+#ifndef __MAZE_HPP__
+#define __MAZE_HPP__
 
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -22,7 +22,7 @@
 
 namespace maze
 {
-    // Quick templates to get everything up and running.
+    // Templates to get everything up and running.
     template <typename T>
     const T template_abs(const T &value)
     {
@@ -56,7 +56,7 @@ namespace maze
         return sstream.str();
     }
 
-    // COLOR STRUCTS
+    // COLOR STRUCTURES
 
     struct ColorRGB8bit;
     struct ColorRGB
@@ -77,7 +77,7 @@ namespace maze
     bool operator==(const ColorRGB &color1, const ColorRGB &color2);
     bool operator!=(const ColorRGB &color1, const ColorRGB &color2);
 
-    // Updated color constants
+    // Updated color const
     static const ColorRGB RGB_Black = ColorRGB(0, 0, 0);
     static const ColorRGB RGB_White = ColorRGB(255, 255, 255);
     static const ColorRGB RGB_Red = ColorRGB(255, 0, 0);
@@ -107,22 +107,22 @@ namespace maze
     static const ColorRGB RGB_Beige = ColorRGB(245, 245, 220);
     static const ColorRGB RGB_Brown = ColorRGB(165, 42, 42);
 
-    // Global variables
+    // Global var
     extern int w;
     extern int h;
 
-    extern std::map<int, bool> key_pressed; // Key pressed -- Detect key press only once.
+    extern std::map<int, bool> key_pressed; // Key pressed -- Detect key press once only
     extern SDL_Window *scr;                 // Screen surface.
     extern Uint8 *inkeys;
     extern SDL_Event event;
 
-    // Keyboard functions
+    // Keyboard func
     __local__ bool KeyPressed(int key);
     __local__ bool KeyDown(int key);
 
-    // Basic Screen functions
+    // Basic Screen func
     __local__ void lock();
     __local__ void screen(int width, int height, bool fullscreen, const std::string &title);
 } // namespace maze
 
-#endif // __THEMAZE_HPP__
+#endif // __MAZE_HPP__

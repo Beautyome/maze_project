@@ -1,13 +1,13 @@
-#include "common.hpp"
+#include "utils.hpp"
 
 /**
- * main - entry point
- * @ac: argument count
- * @av: argument vector
- * @env: environment
- * Return: 0 on success, 1 on failure
+ * main - entry point to main
+ * @ar: argument count
+ * @arv: argument vector
+ * @env: env
+ * Return: 0 on success, otherwise 1 on failure
  */
-int main(int ac, char **av, char **env)
+int main(int ar, char **arv, char **env)
 {
   double posX = 22, posY = 12;      /* X and Y start positions */
   double dirX = -1, dirY = 0;       /* Initial direction vector */

@@ -1,7 +1,7 @@
-#ifndef __CONSTANTST_H__
-#define __CONSTANTST_H__
+#ifndef __CONST_H__
+#define __CONST_H__
 
-#include "common.hpp"
+#include "utils.hpp"
 
 #define SCREEN_WIDTH 1360
 #define SCREEN_HEIGHT 720
@@ -75,4 +75,4 @@ double zBuffer[SCREEN_WIDTH];
 int spriteOrder[NUM_SPRITES];
 int spriteDistance[NUM_SPRITES];
 
-#endif // __CONSTANTST_H__
+#endif // __CONST_H__
