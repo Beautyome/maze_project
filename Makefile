@@ -1,7 +1,7 @@
 # The maze project Makefile
 
 #OBJS specifies which files to compile as part of the project
-OBJS = maze.cpp lib/quickcg.cpp
+OBJS = raycaster.cpp lib/quickcg.cpp
 
 #CC specifies which compiler we're using
 CC = g++
