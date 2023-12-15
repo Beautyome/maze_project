@@ -16,8 +16,8 @@ LINKER_FLAGS = -lSDL
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = testfile
-WIN_FILE = maze-1.0.exe
-LIN_FILE = maze-1.0
+WIN_FILE = maze-1.exe
+LIN_FILE = maze-1
 
 #This is the target that compiles our executable
 all : $(OBJS)
